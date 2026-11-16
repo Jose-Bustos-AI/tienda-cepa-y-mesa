@@ -16,26 +16,32 @@ plugin/cepa-y-mesa-tienda/    Plugin propio: funciones de la tienda, datos del c
 - WordPress con WooCommerce 11, en el hosting de Hostinger, con su propio subdominio y certificado de seguridad
 - Tema hijo propio sobre Twenty Twenty-Five: paleta granate, crema y oliva, tipografías DM Serif Display y Outfit servidas desde la propia web, cabecera, pie y portada a medida
 - Portada con foto a pantalla completa, titular animado, tarjeta flotante del vino del mes, cinta de frases en movimiento y secciones que aparecen al hacer scroll
+- Portada con bloque del vino del mes y preguntas frecuentes desplegables
+- Página de tienda con presentación y accesos rápidos a las cinco categorías
 - Tienda, carrito, pago y direcciones de la web en español, con la traducción oficial de WooCommerce
 
 ## Catálogo y compra
 - 15 productos en 5 categorías: tintos, blancos y rosados, espumosos y dulces, despensa gourmet y lotes
 - 8 vinos en dos formatos, botella o caja de 6 con un 10 % de descuento; al elegir la caja, la ficha dice cuánto sale cada botella y cuánto ahorras
+- El formato se elige con dos botones que enseñan el precio de cada uno, no con un desplegable
 - Ficha de cata en cada vino: notas, barras de cuerpo, fruta y frescura, temperatura de servicio y con qué marida
-- Ficha técnica con D.O., uva, crianza y graduación
+- Ficha técnica a la vista con D.O., uva, crianza y graduación
+- Pestañas de cómo servirlo y de envíos y devoluciones en cada ficha
 - Ofertas con precio tachado (también en la caja) y un lote regalo con 4,90 € de ahorro
 - Fotos de producto creadas para la marca
 - Envío estándar a 4,90 €, gratis desde 49 € (entonces el estándar de pago desaparece) y exprés en 24 h a 7,90 €
 - Cupón de bienvenida BIENVENIDA10 con un 10 % de descuento
 - Casilla obligatoria "Confirmo que soy mayor de 18 años" en el pago: sin marcarla no deja hacer el pedido
+- Aviso en el carrito de cuánto falta para el envío gratis, con barra de progreso
 - Venta cruzada en el carrito: con cada vino propone el queso y la almendra
 - Pago de prueba que no pide tarjeta ni cobra nada y termina en la página de pedido recibido
-- Dos pedidos de prueba completos: caja de 6 en oferta con cupón y envío gratis, y desde el móvil con envío exprés
+- Tres pedidos de prueba completos: caja de 6 en oferta con cupón y envío gratis; desde el móvil con envío exprés; y desde el móvil con la ficha nueva, comprobando que sin la casilla de mayoría de edad no deja pedir
 
 ## Detalles
 - Sin plugins de pago: todo lo propio está en un plugin hecho a medida para la tienda
 - Recomendador "¿Qué vas a cocinar hoy?": seis platos, cada uno con el estilo de vino, por qué funciona, temperatura, copa y cuándo abrirlo, dos vinos de la tienda y algo de la despensa para picar
 - Ventana de mayoría de edad la primera vez que se entra en la tienda
+- Descripción para buscadores y para compartir en la portada, la tienda, las categorías y cada ficha
 - Montaje automático del catálogo, los envíos, el pago y el cupón desde el propio plugin
 - Lista para conectar Stripe, Redsys o Bizum cuando sea una tienda real
 

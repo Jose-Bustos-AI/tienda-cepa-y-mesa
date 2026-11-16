@@ -110,3 +110,86 @@
 @media (prefers-reduced-motion: reduce) {
 	.cym-mar__panel.entra > *, .cym-edad, .cym-edad__caja, .cym-edad__copa .lleno { animation: none; }
 }
+
+/* ---------- Ficha: molienda y peso con botones ---------- */
+.cym-oculto { position: absolute !important; width: 1px !important; height: 1px !important; min-height: 0 !important; padding: 0 !important; border: 0 !important; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.cym-con-pildoras .reset_variations { display: none !important; }
+.cym-con-pildoras table.variations td.value { position: relative; }
+.cym-pildoras { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 14px; }
+.cym-pildoras button { display: inline-flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1px; min-height: 46px; padding: 9px 18px; border-radius: 999px; border: 1.5px solid rgb(36 20 24 / 0.18); background: #fffaf3; color: #241418; font: inherit; font-size: 14.5px; font-weight: 600; line-height: 1.2; cursor: pointer; transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s; }
+.cym-pildoras button small { font-size: 12.5px; font-weight: 600; color: #6e605c; transition: color 0.25s; }
+.cym-pildoras button:hover { border-color: #241418; transform: translateY(-1px); }
+.cym-pildoras button[aria-pressed="true"] { background: #241418; border-color: #241418; color: #fffaf3; }
+.cym-pildoras button[aria-pressed="true"] small { color: #e9c9b0; }
+.cym-pildoras button:focus-visible { outline: 3px solid #7a2338; outline-offset: 2px; }
+.cym-pildoras button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+
+/* Cantidad con menos y más */
+.cym-cantidad { display: inline-flex !important; align-items: center; border: 1.5px solid rgb(36 20 24 / 0.18); border-radius: 999px; background: #fffaf3; overflow: hidden; margin-right: 12px !important; }
+.cym-cantidad .qty { width: 44px !important; padding: 12px 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent; text-align: center; font-weight: 600; -moz-appearance: textfield; appearance: textfield; }
+.cym-cantidad .qty::-webkit-outer-spin-button, .cym-cantidad .qty::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.cym-cant { width: 44px; height: 48px; border: 0; background: transparent; color: #241418; font: inherit; font-size: 20px; font-weight: 600; line-height: 1; cursor: pointer; transition: background 0.2s; }
+.cym-cant:hover { background: #f6f0e6; }
+.cym-cant:focus-visible { outline: 3px solid #7a2338; outline-offset: -3px; }
+
+/* Compromisos bajo el botón */
+.cym-confianza { list-style: none; display: grid; gap: 8px; margin: 22px 0 0; padding: 18px 0 0; border-top: 1px solid rgb(36 20 24 / 0.12); font-size: 14.5px; color: #4a3f38; }
+.cym-confianza li { display: flex; align-items: center; gap: 10px; }
+.cym-confianza svg { flex: none; width: 20px; height: 20px; padding: 3px; border-radius: 50%; background: #4f5a33; fill: none; stroke: #fffaf3; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; box-sizing: border-box; }
+
+/* Ficha de origen */
+.cym-origen { margin: 22px 0 6px; padding: 20px 22px; border-radius: 20px; background: #241418; color: #f6f0e6; }
+.cym-origen__titulo { margin: 0 0 12px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #e9b98f; }
+.cym-origen dl { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; margin: 0; }
+.cym-origen dl div:first-child { grid-column: 1 / -1; }
+.cym-origen dt { font-size: 12px; color: rgb(246 240 230 / 0.6); }
+.cym-origen dd { margin: 2px 0 0; font-weight: 600; font-size: 15px; color: #fffaf3; }
+.cym-origen dl div:first-child dd { font-family: "DM Serif Display", Georgia, serif; font-size: 22px; font-weight: 400; }
+
+/* ---------- Tienda: presentación y categorías ---------- */
+.cym-tienda__intro { max-width: 60ch; margin: 0 0 6px; font-size: 17px; color: #6e605c; }
+.cym-filtros { clear: both; margin: 18px 0 22px; }
+.cym-filtros ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
+.cym-filtros a { display: inline-flex; align-items: center; min-height: 42px; padding: 0 18px; border-radius: 999px; border: 1.5px solid rgb(36 20 24 / 0.16); background: #fffaf3; color: #241418; font-size: 14.5px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background 0.25s, border-color 0.25s, color 0.25s; }
+.cym-filtros a:hover { border-color: #241418; }
+.cym-filtros a[aria-current="page"] { background: #241418; border-color: #241418; color: #fffaf3; }
+.cym-filtros a:focus-visible { outline: 3px solid #7a2338; outline-offset: 2px; }
+
+/* ---------- Carrito: aviso de envío gratis ---------- */
+.cym-envio { margin: 0 0 24px; padding: 16px 20px; border-radius: 18px; background: #fffaf3; border: 1px solid rgb(36 20 24 / 0.12); }
+.cym-envio[hidden] { display: none; }
+.cym-envio__texto { margin: 0 0 10px; font-size: 15px; font-weight: 600; color: #241418; }
+.cym-envio__pista { height: 8px; border-radius: 99px; background: #ece2d2; overflow: hidden; }
+.cym-envio__pista span { display: block; height: 100%; width: 4%; border-radius: 99px; background: linear-gradient(90deg, #946a2c, #7a2338); transition: width 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.cym-envio--hecho .cym-envio__pista span { background: #4f5a33; }
+.cym-envio--hecho .cym-envio__texto { color: #4f5a33; }
+
+/* ---------- Portada: edición limitada ---------- */
+.cym-edicion { background: #ece2d2; padding: clamp(56px, 8vw, 110px) 24px; }
+.cym-edicion__in { max-width: 1192px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(28px, 6vw, 90px); align-items: center; }
+.cym-edicion__foto { position: relative; display: block; border-radius: 30px; }
+.cym-edicion__foto img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 30px; box-shadow: 0 40px 70px -40px rgb(36 20 24 / 0.55); }
+.cym-edicion__sello { position: absolute; right: -18px; top: -18px; display: grid; place-items: center; width: 112px; height: 112px; border-radius: 50%; background: #7a2338; color: #fff; font-family: "DM Serif Display", Georgia, serif; font-style: italic; font-size: 18px; line-height: 1.15; text-align: center; transform: rotate(10deg); box-shadow: 0 16px 30px -14px rgb(122 35 56 / 0.9); }
+.cym-edicion__lead { max-width: 48ch; margin: 18px 0 0; font-size: 17px; color: #4a3f38; }
+.cym-edicion__notas { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; }
+.cym-edicion__notas li { padding: 8px 16px; border-radius: 999px; background: #fffaf3; font-size: 14.5px; font-weight: 600; }
+.cym-edicion__datos { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 8px 34px; margin: 26px 0 0; padding-top: 22px; border-top: 1px solid rgb(36 20 24 / 0.16); }
+.cym-edicion__datos dt { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #946a2c; }
+.cym-edicion__datos dd { margin: 4px 0 0; font-weight: 600; font-size: 15.5px; }
+
+@media (max-width: 781px) {
+	.cym-pildoras button { padding: 8px 15px; font-size: 14px; }
+	.cym-origen { padding: 18px; }
+	.cym-filtros { margin-inline: -16px; }
+	.cym-filtros ul { flex-wrap: nowrap; overflow-x: auto; padding-inline: 16px; scrollbar-width: none; }
+	.cym-filtros ul::-webkit-scrollbar { display: none; }
+	.cym-edicion { padding-inline: 16px; }
+	.cym-edicion__in { grid-template-columns: 1fr; }
+	.cym-edicion__sello { right: 10px; top: -22px; width: 92px; height: 92px; font-size: 14.5px; }
+	.cym-edicion__datos { grid-template-columns: 1fr 1fr; }
+	.cym-edicion__datos div:first-child { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.cym-pildoras button, .cym-envio__pista span, .cym-filtros a { transition: none; }
+}

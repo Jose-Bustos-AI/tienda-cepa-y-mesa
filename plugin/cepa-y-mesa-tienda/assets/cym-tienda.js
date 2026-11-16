@@ -71,4 +71,111 @@
 			}
 		});
 	}
+
+	function avisar(el) {
+		if (window.jQuery) window.jQuery(el).trigger('change');
+		else el.dispatchEvent(new Event('change', { bubbles: true }));
+	}
+
+	// Ficha del vino: el desplegable de formato pasa a ser botones con su precio.
+	var formu = document.querySelector('form.variations_form');
+	if (formu) {
+		var form = formu;
+		var variaciones = [];
+		try { variaciones = JSON.parse(form.getAttribute('data-product_variations')) || []; } catch (e) { variaciones = []; }
+		var grupos = [];
+		form.querySelectorAll('table.variations select').forEach(function (sel) {
+			var etiqueta = form.querySelector('label[for="' + sel.id + '"]');
+			var grupo = document.createElement('div');
+			grupo.className = 'cym-pildoras';
+			grupo.setAttribute('role', 'group');
+			if (etiqueta) { etiqueta.id = etiqueta.id || 'cym-et-' + sel.id; grupo.setAttribute('aria-labelledby', etiqueta.id); }
+			Array.prototype.forEach.call(sel.options, function (op) {
+				if (!op.value) return;
+				var b = document.createElement('button');
+				b.type = 'button';
+				b.setAttribute('data-valor', op.value);
+				b.textContent = op.textContent;
+				if (sel.name === 'attribute_formato') {
+					var v = variaciones.filter(function (x) { return x.attributes && x.attributes.attribute_formato === op.value; })[0];
+					if (v) { var s = document.createElement('small'); s.textContent = euros(v.display_price); b.appendChild(s); }
+				}
+				b.addEventListener('click', function () { sel.value = op.value; avisar(sel); });
+				grupo.appendChild(b);
+			});
+			sel.parentNode.insertBefore(grupo, sel);
+			sel.classList.add('cym-oculto');
+			sel.setAttribute('tabindex', '-1');
+			grupos.push({ sel: sel, grupo: grupo });
+		});
+		var pintar = function () {
+			grupos.forEach(function (g) {
+				g.grupo.querySelectorAll('button').forEach(function (b) {
+					var valor = b.getAttribute('data-valor'), existe = false;
+					Array.prototype.forEach.call(g.sel.options, function (op) { if (op.value === valor && !op.disabled) existe = true; });
+					b.disabled = !existe;
+					b.setAttribute('aria-pressed', g.sel.value === valor ? 'true' : 'false');
+				});
+			});
+		};
+		if (grupos.length) {
+			form.classList.add('cym-con-pildoras');
+			form.addEventListener('change', pintar);
+			if (window.jQuery) window.jQuery(form).on('change woocommerce_update_variation_values reset_data found_variation', function () { setTimeout(pintar, 0); });
+			pintar();
+		}
+	}
+
+	// Cantidad con botones de menos y más.
+	document.querySelectorAll('form.cart .quantity').forEach(function (caja) {
+		var campo = caja.querySelector('input.qty');
+		if (!campo || campo.type === 'hidden' || caja.querySelector('.cym-cant')) return;
+		caja.classList.add('cym-cantidad');
+		[['−', -1, 'Quitar una unidad'], ['+', 1, 'Añadir una unidad']].forEach(function (d) {
+			var b = document.createElement('button');
+			b.type = 'button';
+			b.className = 'cym-cant';
+			b.textContent = d[0];
+			b.setAttribute('aria-label', d[2]);
+			b.addEventListener('click', function () {
+				var paso = parseFloat(campo.step) || 1, min = parseFloat(campo.min) || 1, max = parseFloat(campo.max) || Infinity;
+				var n = (parseFloat(campo.value) || 0) + d[1] * paso;
+				campo.value = Math.max(min, Math.min(max, n));
+				avisar(campo);
+			});
+			if (d[1] < 0) caja.insertBefore(b, caja.firstChild); else caja.appendChild(b);
+		});
+	});
+
+	// Carrito: cuánto falta para el envío gratis.
+	var carrito = document.querySelector('.wp-block-woocommerce-cart');
+	if (carrito && window.CYM && CYM.envioGratis) {
+		var barra = document.createElement('div');
+		barra.className = 'cym-envio';
+		barra.hidden = true;
+		barra.innerHTML = '<p class="cym-envio__texto" aria-live="polite"></p><div class="cym-envio__pista" aria-hidden="true"><span></span></div>';
+		carrito.parentNode.insertBefore(barra, carrito);
+		var texto = barra.querySelector('.cym-envio__texto'), relleno = barra.querySelector('.cym-envio__pista span');
+		var ultimo = null;
+		var actualizar = function () {
+			var tienda = window.wp && wp.data && wp.data.select('wc/store/cart');
+			if (!tienda) return;
+			var datos = tienda.getCartData(), t = datos && datos.totals;
+			if (!t || !datos.itemsCount) { barra.hidden = true; ultimo = null; return; }
+			var div = Math.pow(10, t.currency_minor_unit || 2);
+			var total = (parseInt(t.total_items, 10) - parseInt(t.total_discount || 0, 10)) / div;
+			if (total === ultimo) return;
+			ultimo = total;
+			var falta = CYM.envioGratis - total;
+			barra.hidden = false;
+			barra.classList.toggle('cym-envio--hecho', falta <= 0);
+			texto.textContent = falta > 0 ? 'Te faltan ' + euros(falta) + ' para el envío gratis.' : 'Ya tienes el envío estándar gratis.';
+			relleno.style.width = Math.max(4, Math.min(100, (total / CYM.envioGratis) * 100)) + '%';
+		};
+		var enganchar = function (intentos) {
+			if (window.wp && wp.data && wp.data.select('wc/store/cart')) { wp.data.subscribe(actualizar); actualizar(); }
+			else if (intentos > 0) setTimeout(function () { enganchar(intentos - 1); }, 400);
+		};
+		enganchar(25);
+	}
 })();
