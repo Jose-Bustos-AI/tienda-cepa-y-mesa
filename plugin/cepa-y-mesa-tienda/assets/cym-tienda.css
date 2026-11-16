@@ -1,0 +1,112 @@
+/* Recomendador de maridaje */
+.cym-mar { background: #241418; color: #f6f0e6; padding: clamp(60px, 8vw, 110px) 24px; position: relative; overflow: hidden; scroll-margin-top: 80px; }
+.cym-mar::before { content: ""; position: absolute; width: 760px; height: 760px; right: -240px; top: -280px; border-radius: 50%; background: radial-gradient(circle, rgb(122 35 56 / 0.55), transparent 65%); pointer-events: none; }
+.cym-mar::after { content: ""; position: absolute; width: 520px; height: 520px; left: -200px; bottom: -260px; border-radius: 50%; background: radial-gradient(circle, rgb(196 154 74 / 0.18), transparent 65%); pointer-events: none; }
+.cym-mar__in { position: relative; z-index: 1; max-width: 1192px; margin: 0 auto; }
+.cym-mar__cab { max-width: 640px; }
+.cym-mar__cab .cym-titulo { color: #fffaf3; }
+.cym-mar__cab .cym-titulo em { color: #e9b98f; }
+.cym-mar__cab > p:last-child { color: rgb(246 240 230 / 0.75); font-size: 17px; margin-top: 16px; }
+.cym-mar__botones { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin: 40px 0 22px; }
+.cym-mar__botones button { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px; border-radius: 18px; border: 1.5px solid rgb(246 240 230 / 0.16); background: rgb(255 250 243 / 0.04); color: #f6f0e6; font: inherit; font-weight: 600; font-size: 15px; text-align: left; cursor: pointer; transition: background 0.3s, border-color 0.3s, transform 0.3s; }
+.cym-mar__botones button:hover { border-color: rgb(246 240 230 / 0.4); transform: translateY(-2px); }
+.cym-mar__botones button[aria-selected="true"] { background: #7a2338; border-color: #a03a52; color: #fff; }
+.cym-mar__botones button:focus-visible { outline: 3px solid #e9b98f; outline-offset: 3px; }
+.cym-mar__botones svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.cym-mar__panel { display: grid; grid-template-columns: 1fr 1.1fr; gap: 22px; }
+.cym-mar__panel[hidden] { display: none; }
+.cym-mar__panel.entra > * { animation: cym-panel 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.cym-mar__panel.entra > *:nth-child(2) { animation-delay: 0.08s; }
+@keyframes cym-panel { from { opacity: 0; transform: translateY(14px); } }
+.cym-mar__consejo, .cym-mar__vinos { background: rgb(255 250 243 / 0.06); border: 1px solid rgb(246 240 230 / 0.12); border-radius: 24px; padding: 28px; }
+.cym-mar__pide { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #e9b98f; }
+.cym-mar__estilo { font-family: "DM Serif Display", Georgia, serif; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.05; margin: 8px 0 14px; color: #fffaf3; }
+.cym-mar__porque { margin: 0 0 22px; color: rgb(246 240 230 / 0.82); font-size: 16px; }
+.cym-mar__datos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0; }
+.cym-mar__datos div { background: rgb(255 250 243 / 0.05); border-radius: 14px; padding: 12px 14px; }
+.cym-mar__datos dt { font-size: 12px; color: rgb(246 240 230 / 0.6); }
+.cym-mar__datos dd { margin: 2px 0 0; font-weight: 600; font-size: 15.5px; color: #fffaf3; }
+.cym-mar__vinos { display: flex; flex-direction: column; gap: 12px; }
+.cym-mar__vino { display: grid; grid-template-columns: 104px 1fr; gap: 18px; align-items: center; padding: 12px; border-radius: 18px; background: #fffaf3; color: #241418 !important; text-decoration: none !important; transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.cym-mar__vino:hover { transform: translateX(6px); }
+.cym-mar__vino img { width: 104px; height: 104px; object-fit: cover; border-radius: 12px; margin: 0 !important; }
+.cym-mar__vino > span { display: flex; flex-direction: column; gap: 3px; }
+.cym-mar__vino b { font-family: "DM Serif Display", Georgia, serif; font-size: 21px; font-weight: 400; line-height: 1.1; }
+.cym-mar__vino small { color: #6e605c; font-size: 13.5px; }
+.cym-mar__vino em, .cym-mar__picar em { font-style: normal; font-weight: 700; font-size: 15px; }
+.cym-mar__vino em del, .cym-mar__picar em del { opacity: 0.55; font-weight: 500; margin-right: 4px; }
+.cym-mar__vino em ins, .cym-mar__picar em ins { text-decoration: none; color: #7a2338; }
+.cym-mar__vino strong { color: #7a2338; font-size: 14px; margin-top: 4px; }
+.cym-mar__picar { display: grid; grid-template-columns: 56px 1fr auto; gap: 14px; align-items: center; padding: 10px 16px 10px 10px; border-radius: 16px; border: 1.5px dashed rgb(246 240 230 / 0.28); color: #f6f0e6 !important; text-decoration: none !important; transition: border-color 0.3s, background 0.3s; }
+.cym-mar__picar:hover { border-color: #e9b98f; background: rgb(255 250 243 / 0.05); }
+.cym-mar__picar em { white-space: nowrap; }
+.cym-desde { font-weight: 500; font-size: 0.85em; opacity: 0.75; margin-right: 2px; }
+.cym-mar__picar img { width: 56px; height: 56px; object-fit: cover; border-radius: 10px; margin: 0 !important; }
+.cym-mar__picar span { display: flex; flex-direction: column; }
+.cym-mar__picar small { font-size: 12px; color: #e9b98f; font-weight: 600; }
+.cym-mar__picar b { font-size: 15px; font-weight: 600; }
+.cym-mar__picar em ins { color: #e9b98f; }
+
+/* Ficha de cata */
+.cym-cata { background: #fffaf3; border: 1px solid rgb(36 20 24 / 0.12); border-radius: 20px; padding: 20px 22px; margin: 6px 0 24px; }
+.cym-cata__titulo { margin: 0 0 12px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #7a2338; }
+.cym-cata__notas { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0 0 16px; }
+.cym-cata__notas li { padding: 7px 14px; border-radius: 999px; background: #f6f0e6; font-weight: 600; font-size: 14px; }
+.cym-cata__barras { display: grid; gap: 10px; margin: 0; }
+.cym-cata__barras div { display: grid; grid-template-columns: 80px 1fr; align-items: center; gap: 12px; }
+.cym-cata__barras dt { font-size: 14px; font-weight: 500; }
+.cym-cata__barras dd { margin: 0; height: 8px; border-radius: 99px; background: #ece2d2; overflow: hidden; }
+.cym-cata__barras dd span { display: block; height: 100%; width: calc(var(--v) * 20%); border-radius: 99px; background: linear-gradient(90deg, #c49a4a, #7a2338); }
+.cym-cata__pie { display: grid; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid rgb(36 20 24 / 0.1); }
+.cym-cata__pie p { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 14.5px; color: #6e605c; }
+.cym-cata__pie b { color: #241418; font-weight: 600; }
+.cym-cata__pie svg { width: 20px; height: 20px; flex: none; fill: none; stroke: #7a2338; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cym-cata__enlace { display: inline-block; margin-top: 14px; font-size: 14px; font-weight: 600; color: #7a2338 !important; }
+
+/* Aviso de la caja de 6 */
+.cym-caja { margin: 0 0 16px; padding: 0 14px; max-height: 0; overflow: hidden; border-left: 3px solid #c49a4a; font-size: 14.5px; color: #6e605c; transition: max-height 0.4s, padding 0.4s; }
+.cym-caja.visible { max-height: 120px; padding: 6px 14px; }
+
+/* Notas en las tarjetas */
+.cym-tarjeta-notas { margin: 4px 0 0 !important; padding: 0 20px; font-size: 13.5px; color: #6e605c; }
+
+/* Ventana de mayoría de edad */
+.cym-bloqueo, .cym-bloqueo body { overflow: hidden; }
+.cym-edad { position: fixed; inset: 0; z-index: 100000; display: grid; place-items: center; padding: 20px; background: rgb(36 20 24 / 0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); animation: cym-aparece 0.4s ease both; }
+.cym-edad[hidden] { display: none; }
+.cym-edad.fuera { opacity: 0; transition: opacity 0.4s; }
+@keyframes cym-aparece { from { opacity: 0; } }
+.cym-edad__caja { width: min(440px, 100%); background: #f6f0e6; color: #241418; border-radius: 28px; padding: 36px 32px 30px; text-align: center; box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.6); animation: cym-sube 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes cym-sube { from { opacity: 0; transform: translateY(24px) scale(0.97); } }
+.cym-edad__copa { display: block; margin: 0 auto; width: 54px; height: 54px; fill: none; stroke: #7a2338; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cym-edad__copa .lleno { fill: #7a2338; stroke: none; transform-origin: 50% 100%; animation: cym-llenar 1.4s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes cym-llenar { from { transform: scaleY(0); } }
+.cym-edad .cym-ceja { justify-content: center; margin-top: 10px; }
+.cym-edad h2 { font-family: "DM Serif Display", Georgia, serif; font-weight: 400; font-size: 32px; line-height: 1.1; margin: 10px 0 8px; }
+.cym-edad p { margin: 0; color: #6e605c; font-size: 15.5px; }
+.cym-edad__botones { display: grid; gap: 10px; margin-top: 24px; }
+.cym-edad__botones .cym-btn { justify-content: center; border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+.cym-edad__botones .cym-btn--linea { border: 1.5px solid rgb(36 20 24 / 0.22); }
+.cym-edad__no { margin-top: 16px !important; color: #7a2338 !important; font-weight: 600; }
+
+@media (max-width: 1000px) {
+	.cym-mar__botones { grid-template-columns: repeat(6, 150px); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; margin-inline: -24px; padding-inline: 24px; scrollbar-width: none; }
+	.cym-mar__botones button { scroll-snap-align: start; }
+	.cym-mar__panel { grid-template-columns: 1fr; }
+}
+@media (max-width: 781px) {
+	.cym-mar { padding-inline: 16px; }
+	.cym-mar__botones { margin-inline: -16px; padding-inline: 16px; grid-template-columns: repeat(6, 128px); }
+	.cym-mar__consejo, .cym-mar__vinos { padding: 20px; }
+	.cym-mar__vino { grid-template-columns: 84px 1fr; gap: 12px; }
+	.cym-mar__vino img { width: 84px; height: 84px; }
+	.cym-mar__vino b { font-size: 18px; }
+	.cym-mar__picar { grid-template-columns: 48px 1fr; }
+	.cym-mar__picar img { width: 48px; height: 48px; }
+	.cym-mar__picar em { grid-column: 2; }
+	.cym-tarjeta-notas { padding: 0 12px; font-size: 12.5px; }
+	.cym-edad__caja { padding: 30px 22px 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.cym-mar__panel.entra > *, .cym-edad, .cym-edad__caja, .cym-edad__copa .lleno { animation: none; }
+}
